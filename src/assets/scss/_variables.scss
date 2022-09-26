@@ -1,0 +1,9 @@
+$container: 1200px;
+$breakpoints: (
+		small: 576px,
+		medium: 1024px,
+		container: $container,
+		large: 1280px,
+);
+
+$green: #3effb5;

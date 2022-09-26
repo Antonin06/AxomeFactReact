@@ -1,0 +1,89 @@
+@import "media_queries";
+
+
+body {
+	font-family: "Space Grotesk", sans-serif;
+}
+.container {
+	max-width: $container;
+	margin: auto;
+	@include mq-down(container) {
+		padding-left: 2rem;
+		padding-right: 2rem;
+	}
+}
+#App {
+	min-height: 100vh;
+}
+#home, #all-facts, #lastyear {
+	.grid {
+		padding: 50px 0;
+		display: grid;
+		grid-template-columns: 1fr 2fr;
+		gap: 30px;
+		@include mq-down(medium) {
+			grid-template-columns: 1fr;
+		}
+		.left {
+			.date {
+				text-transform: uppercase;
+				font-size: 30px;
+				font-weight: 800;
+
+				.inf {
+
+				}
+				.month, .year {
+					color: $green;
+				}
+			}
+		}
+	}
+}
+
+#header {
+	padding: 20px 0;
+	.main-menu {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		.logo {
+			img {
+				width: 100%;
+				height: 30px;
+			}
+		}
+		.nav {
+			nav {
+				display: flex;
+				gap: 20px;
+				a {
+					//text-decoration: none;
+					color: $green;
+					font-size: 18px;
+					font-weight: 800;
+					text-transform: uppercase;
+				}
+			}
+		}
+		@include mq-down(small) {
+			flex-direction: column;
+			gap: 15px;
+		}
+	}
+}
+
+.axomefactdezinzin {
+	font-size: 20px;
+	margin-bottom: 40px;
+	p {
+		margin-bottom: 10px;
+		margin-top: 0;
+	}
+	.date {
+		text-align: end;
+		color: $green;
+		font-size: 16px;
+		font-weight: 800;
+	}
+}
