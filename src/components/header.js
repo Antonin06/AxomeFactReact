@@ -13,6 +13,7 @@ function Header() {
 					</a>
 					<div className="nav">
 						<nav>
+							<Link to="/">Home</Link>
 							<Link to="lastyear">Last Year</Link>
 							<Link to="thismonth">This Month</Link>
 						</nav>
