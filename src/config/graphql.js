@@ -1,11 +1,9 @@
 import {gql} from "@apollo/client";
 
-
 //LASTYEAR
 export const LASTYEAR = gql`
-#    query GetPosts($month1: String, $month3: String, $month3: String, $year: String) {
-    query GetPosts($last3months: [String] $year: String) {
-        axomefacts( pagination: { limit: 100 }, filters: { Annee: {eq: $year}, Mois: {in: $last3months }}, sort: "createdAt:asc" ) {
+    query GetPosts($last3months: [String] $lastyear: String) {
+        axomefacts( pagination: { limit: 100 }, filters: { Annee: {eq: $lastyear}, Mois: {in: $last3months }}, sort: "createdAt:desc" ) {
             data {
                 id
                 attributes {
@@ -21,7 +19,7 @@ export const LASTYEAR = gql`
 //ALLFACTS
 export const ALLFACTS = gql`
     query GetPosts {
-        axomefacts(pagination: { limit: 100 }) {
+        axomefacts(pagination: { limit: 100 }, sort: "createdAt:desc") {
             data {
                 id
                 attributes {
@@ -36,8 +34,8 @@ export const ALLFACTS = gql`
 
 //HOMEPAGE
 export const HOME = gql`
-    query GetPosts($month: String, $year: String) {
-        axomefacts( pagination: { limit: 100 }, filters: { Annee: {eq: $year}, Mois: {eq: $month }} ) {
+    query GetPosts($year: String) {
+        axomefacts( pagination: { limit: 100 }, filters: { Annee: {eq: $year}, Mois: {eq: "Septembre" }}, sort: "createdAt:desc" ) {
             data {
                 id
                 attributes {

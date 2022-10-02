@@ -1,7 +1,7 @@
 import { useQuery } from "@apollo/client";
 import {ALLFACTS} from "../config/graphql";
-import parse from 'html-react-parser';
 import functionAPI from "../config/fonction";
+import CardFact from "../components/cardFact";
 
 function Homepage() {
 	const month = functionAPI.currentMonth();
@@ -14,8 +14,6 @@ function Homepage() {
 		}
 	})
 
-	if (loading) return <div className="container">Zeubi, ça charge!</div>
-	if (error) return <p>Error :(</p>
 	// console.log(data.axomefacts.data);
 
 	return (
@@ -29,12 +27,16 @@ function Homepage() {
 						</div>
 					</div>
 					<div className="right">
-						{data.axomefacts.data.map((fact, index) => (
-							<div className="axomefactdezinzin" key={index} axfact-id={fact.id}>
-								<div className="fact">{parse(fact.attributes.Texte)}</div>
-								{/*<div className="date">{fact.attributes.Mois} {fact.attributes.Annee}</div>*/}
-							</div>
-						))}
+						{loading && <div className="loader" />}
+						{error && <div className="errors">...</div>}
+
+						{!loading && !data.axomefacts.data.length && <span className="none">Aucun résultat pour {month} !</span>}
+
+						{!loading && data.axomefacts.data.length &&
+							data.axomefacts.data.map((fact,index) => (
+								<CardFact {...fact} key={index}/>
+							))
+						}
 					</div>
 				</div>
 			</div>
